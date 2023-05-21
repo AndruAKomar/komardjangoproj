@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(zc$pu7z(%bha242j8u*ing20zrdnlobf8!77sa)s@8mt5!92k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['andrukomar.pythonanywhere.com']
 
 
 # Application definition
@@ -116,7 +116,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/andrukomar/static'
+MEDIA_ROOT = '/home/andrukomar/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

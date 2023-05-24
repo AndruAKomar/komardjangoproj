@@ -21,4 +21,5 @@ from reference import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reference/', views.home_page),
+    path('genre/<int:pk>', views.view_refer_genre),
 ]

@@ -9,7 +9,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
-class Authors(models.Model):
+class Author(models.Model):
     name = models.CharField(verbose_name='Author name', max_length=30)
     description = models.TextField(verbose_name='Author description', null=True, blank=True)
 

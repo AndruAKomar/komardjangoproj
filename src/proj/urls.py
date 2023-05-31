@@ -21,5 +21,9 @@ from reference import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reference/', views.home_page),
-    path('genre/<int:pk>', views.view_refer_genre),
+    path('genre/<int:pk>', views.view_refer_genre), #убрать нужно
+    path('genre-cbv/<int:pk>', views.GenreView.as_view()),
+    path('genre-add-cbv/', views.GenreCreateView.as_view()),
+    path('genre-upd-cbv/<int:pk>', views.GenreUpdateView.as_view()),
+    path('', views.HomePage.as_view()),
 ]

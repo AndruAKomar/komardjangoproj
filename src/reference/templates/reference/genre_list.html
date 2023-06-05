@@ -1,0 +1,19 @@
+<!-- шаблон для просмотра всех жанров в справочнике в виде таблицы или листа-->
+{% extends 'base.html' %}
+{% block TITLE %}Genre list{% endblock TITLE %}
+{% block BODY %}
+<table border="1">
+    <tr>
+        <th>pk</th>
+        <th>name</th>
+        <th>actions</th>
+    </tr>
+    {%for obj in object_list%}
+    <tr>
+        <td>{{obj.pk}}</td>
+        <td>{{obj.name}}</td>
+        <td><a href="/genre-upd-cbv/{{obj.pk}}">update</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock BODY %}

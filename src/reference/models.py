@@ -23,7 +23,7 @@ class Author(models.Model):
 class Series(models.Model):
     name = models.BigIntegerField(verbose_name='Series book')
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
     
 class Publish(models.Model):

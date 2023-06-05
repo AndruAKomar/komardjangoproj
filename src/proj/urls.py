@@ -20,10 +20,12 @@ from reference import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reference/', views.home_page),
-    path('genre/<int:pk>', views.view_refer_genre), #убрать нужно
-    path('genre-cbv/<int:pk>', views.GenreView.as_view()),
-    path('genre-add-cbv/', views.GenreCreateView.as_view()),
-    path('genre-upd-cbv/<int:pk>', views.GenreUpdateView.as_view()),
-    path('', views.HomePage.as_view()),
+    #path('reference/', views.home_page),   #убрать нужно
+    #path('genre/<int:pk>', views.view_refer_genre), #убрать нужно
+    path('genre-cbv/<int:pk>', views.GenreView.as_view()),   #переход к конкретному объекту Жанра по его РК
+    path('genre-list-cbv/', views.GenreListView.as_view()),     #переход к просмотру всех объектов Жанра
+    path('genre-add-cbv/', views.GenreCreateView.as_view()),        #переход к форме для добавления нового Жанра
+    path('genre-upd-cbv/<int:pk>', views.GenreUpdateView.as_view()),        #переход к форме для редактирования Жанра по его РК
+    path('genre-delete-cbv/<int:pk>', views.GenreDeleteView.as_view()),     #переход к форме для удаления Жанра по его РК
+    path('', views.HomePage.as_view()),     #переход к домашней странице
 ]

@@ -1,0 +1,11 @@
+<!-- шаблон для удаления жанра из справочника -->
+{% extends 'base.html' %}
+{% block TITLE %}Genre delete{% endblock TITLE %}
+{% block BODY %}
+    <H1>Delete genre {{object}} ?</H1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Yes</button>
+    </form>
+{% endblock BODY %}

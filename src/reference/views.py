@@ -26,10 +26,6 @@ from . import forms
 
 #_____________________________________________________________________#
 
-#HomePage 
-class HomePage(generic.TemplateView):
-    template_name='reference/index.html'
-
 #Read 
 class GenreView(generic.DetailView):
     model = models.Genre

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 
 
 # Create your models here.
@@ -11,7 +12,8 @@ class Genre(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return f"/genre-cbv/{self.pk}"
+        return reverse_lazy('reference:GenreView', kwargs={"pk":self.pk})
+        # return f"/genre/{self.pk}"
 
 class Author(models.Model):
     name = models.CharField(verbose_name='Author name', max_length=30)

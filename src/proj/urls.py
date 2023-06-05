@@ -15,17 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from reference import views
+from django.urls import path, include
+from home import views as home_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('reference/', views.home_page),   #убрать нужно
-    #path('genre/<int:pk>', views.view_refer_genre), #убрать нужно
-    path('genre-cbv/<int:pk>', views.GenreView.as_view()),   #переход к конкретному объекту Жанра по его РК
-    path('genre-list-cbv/', views.GenreListView.as_view()),     #переход к просмотру всех объектов Жанра
-    path('genre-add-cbv/', views.GenreCreateView.as_view()),        #переход к форме для добавления нового Жанра
-    path('genre-upd-cbv/<int:pk>', views.GenreUpdateView.as_view()),        #переход к форме для редактирования Жанра по его РК
-    path('genre-delete-cbv/<int:pk>', views.GenreDeleteView.as_view()),     #переход к форме для удаления Жанра по его РК
-    path('', views.HomePage.as_view()),     #переход к домашней странице
+    path('reference/', include('reference.urls', namespace='reference')),
+    path('', home_views.HomePage.as_view(), name='HomePage'),     #переход к домашней странице
 ]

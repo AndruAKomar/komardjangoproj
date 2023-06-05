@@ -12,7 +12,11 @@
     <tr>
         <td>{{obj.pk}}</td>
         <td>{{obj.name}}</td>
-        <td><a href="/genre-upd-cbv/{{obj.pk}}">update</a></td>
+        <td>
+            <a href="{% url 'reference:GenreView' pk=obj.pk %}">detail</a>
+            <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}">update</a>
+            <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}">delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>

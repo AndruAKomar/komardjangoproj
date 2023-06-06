@@ -26,7 +26,7 @@ class Series(models.Model):
     name = models.BigIntegerField(verbose_name='Series book')
     
     def __str__(self) -> str:
-        return self.name
+        return str(self.name)
     
 class Publish(models.Model):
     name = models.CharField(verbose_name='Publishing office', max_length=50)

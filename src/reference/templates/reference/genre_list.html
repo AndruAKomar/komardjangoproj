@@ -13,9 +13,9 @@
         <td>{{obj.pk}}</td>
         <td>{{obj.name}}</td>
         <td>
-            <a href="{% url 'reference:GenreView' pk=obj.pk %}">detail</a>
-            <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}">update</a>
-            <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}">delete</a>
+            <a href="{% url 'reference:GenreView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
+            <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
+            <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
         </td>
     </tr>
     {% endfor %}

@@ -1,11 +1,12 @@
 <!-- шаблон для редактирования жанра в справочнике-->
 {% extends 'base.html' %}
+{% load static %}
 {% block TITLE %}Genre update{% endblock TITLE %}
 {% block BODY %}
     <H1>Update genre, pls</H1>
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-outline-secondary">Submit</button>
     </form>
 {% endblock BODY %}

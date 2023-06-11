@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 class Genre(models.Model):
     name = models.CharField(verbose_name='Genre name', max_length=50)
     description = models.TextField(verbose_name='Genre description', null=True, blank=True)
+    picture = models.ImageField(verbose_name='picture name', upload_to='uploads/genre/')
         
     def __str__(self):
         return self.name

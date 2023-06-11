@@ -3,5 +3,12 @@
 {% block TITLE %}Genre detail{% endblock TITLE %}
 {% block BODY %}
     <h1>Details</h1>
-    {{object}}
+    <div class="card" style="width: 18rem;">
+    <img src="{{object.picture.url}}" class="card-img-top" alt="..." >
+    <div class="card-body">
+        <h5 class="card-title">{{object.name}}</h5>
+        <p class="card-text">{{object.description}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>
 {% endblock BODY %}

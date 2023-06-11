@@ -7,4 +7,4 @@ class GenreModelForm(forms.ModelForm):
     class Meta: 
         model = models.Genre
         fields = [
-            "name", "description"]
+           "picture", "name", "description"]

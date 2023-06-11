@@ -1,5 +1,6 @@
 # add new ignorefile
 local_settings.py
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

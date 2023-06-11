@@ -40,8 +40,10 @@ class GenreCreateView(generic.CreateView):
     model = models.Genre
     #template_name = 'reference/genre_form.html'
     fields = [
-        "name", "description"
+        "picture", "name", "description"
     ]
+    def get_success_url(self) -> str:
+        return super().get_success_url()
 
 #Updata
 class GenreUpdateView(generic.UpdateView):

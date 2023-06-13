@@ -37,8 +37,9 @@ class AuthorView(generic.DetailView):
     
 
 #List 
-class GenreListView(generic.ListView):
+class ReferenceListView(generic.ListView):
     model = models.Genre
+    template_name = 'reference/reference_list.html'
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         cont =super().get_context_data(**kwargs)
         cont["author_list"] = Author.objects.all()

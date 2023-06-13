@@ -4,9 +4,7 @@
 {% block TITLE %}Index page{% endblock TITLE %}
 {% block BODY %}
     <H1>This index</H1><br>
-    <a class="btn btn-primary" href="{% url 'reference:ReferenceListView' %}" role="button">go to reference_list !!!</a>
-    <!-- <button class="btn btn-primary" type="submit">Button</button>
-    <input class="btn btn-primary" type="button" value="Input"> -->
+    <a class="btn btn-primary" href="{% url 'reference:ReferenceListView' %}" role="button">go to the reference_list !!!</a>
     <br>
     <img src="{% static 'home/real-friends.jpg' %}" alt="image file">
     {{key}}

@@ -1,9 +1,11 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from random import randint
 from django.views import generic
 from . import models
 from . import forms
+from .models import Author, Genre, Series, Publish
 
 # Create your views here.
 
@@ -30,9 +32,19 @@ from . import forms
 class GenreView(generic.DetailView):
     model = models.Genre
 
+class AuthorView(generic.DetailView):
+    model = models.Author
+    
+
 #List 
 class GenreListView(generic.ListView):
     model = models.Genre
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        cont =super().get_context_data(**kwargs)
+        cont["author_list"] = Author.objects.all()
+        cont["series_list"] = Series.objects.all()
+        cont["publish_list"] = Publish.objects.all()
+        return cont
 
 
 #Create

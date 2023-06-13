@@ -23,6 +23,9 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse_lazy('reference:AuthorView', kwargs={"pk":self.pk})
+    
 class Series(models.Model):
     name = models.BigIntegerField(verbose_name='Series book')
     

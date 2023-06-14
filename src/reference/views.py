@@ -2,10 +2,12 @@ from typing import Any, Dict
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from random import randint
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import generic
 from . import models
 from . import forms
 from .models import Author, Genre, Series, Publish
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -37,7 +39,9 @@ class AuthorView(generic.DetailView):
     
 
 #List 
-class ReferenceListView(generic.ListView):
+class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    login_url=reverse_lazy('person:login')
+    permission_required=['reference.add_genre','reference.delete_genre']
     model = models.Genre
     template_name = 'reference/reference_list.html'
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:

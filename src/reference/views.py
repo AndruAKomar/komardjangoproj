@@ -28,7 +28,7 @@ from django.urls import reverse_lazy
 # def success_page(request):
 #     return render (request, template_name='reference/success.html', context={'key': models.Genre.objects.get(pk=1)})
 
-#_____________________________________________________________________#
+#__________________________________________________________________#
 
 #Read 
 class GenreView(generic.DetailView):

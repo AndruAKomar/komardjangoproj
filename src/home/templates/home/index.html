@@ -3,20 +3,63 @@
 {%load static%}
 {% block TITLE %}Index page{% endblock TITLE %}
 {% block BODY %}
-    <H1>This index</H1><br>
-    
-    {%if user.is_superuser%}
-        <a class="btn btn-primary" href="{% url 'reference:ReferenceListView' %}" role="button" >go to the reference_list !!! </a><br>
-        {% else %}
-        <a class="btn btn-primary" href="{% url 'person:login' %}" role="button" >you are not a superuser !!! GET login superuser ???</a><br>
-    {% endif %} 
+<main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Book online store</h1>
+          <p class="lead text-body-secondary">Welcome to our bookstore. Please register, make your choice, place an order through the shopping cart and redeem it. Happy shopping!</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {%for obj in object_list%}
+            <div class="col">
+            <div class="card shadow-sm">
+                {% comment %} <img src="{% static 'home/real-friends.jpg' %}" class="card-img-top" alt="..." > {% endcomment %}
+                <img src="{{obj.picture.url}}" class="card-img-top" alt="..." >
+                <div class="card-body">
+                    <h5 class="card-title">{{obj.name}}</h5>
+                    <p class="card-text">{{obj.description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}">Подробно</button>
+                </div>
+            </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="bookModal{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Название книги: {{obj.name}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    {{obj.description}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal end-->
+            
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  
+</main>
      
-   
-    {{key}}
-    YOU : <h2>{{user}}  -- {{user.first_name}}</h2>
-    Authenticated?<h2> {{user.is_authenticated}}</h2>
-    Anonymous? <h2>{{user.is_anonymous}}</h2>
-    <br>
-    <img   src="{% static 'home/real-friends.jpg' %}" alt="image file">
-   
+
 {% endblock BODY %}

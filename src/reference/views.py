@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from random import randint
@@ -29,6 +30,7 @@ from django.urls import reverse_lazy
 #     return render (request, template_name='reference/success.html', context={'key': models.Genre.objects.get(pk=1)})
 
 #__________________________________________________________________#
+
 
 #Read 
 class GenreView(generic.DetailView):
@@ -70,6 +72,7 @@ class GenreCreateView(generic.CreateView):
     ]
     
     def get_success_url(self) -> str:
+        self.object.picture_resizer()
         return super().get_success_url()
 
 class AuthorCreateView(generic.CreateView):
@@ -110,6 +113,15 @@ class GenreUpdateView(generic.UpdateView):
     model = models.Genre
     template_name = 'reference/reference_update.html'
     form_class= forms.GenreModelForm
+
+    # def form_valid(self, form):
+    #     # if form.has_changed():
+    #     #     if 'picture' in form.changed_data:
+    #     self.object.picture_resizer()
+    #     return super().form_valid(form)
+    def get_success_url(self) -> str:
+        self.object.picture_resizer()
+        return super().get_success_url()
  
 class AuthorUpdateView(generic.UpdateView):
     model = models.Author

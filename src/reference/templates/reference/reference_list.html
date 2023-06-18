@@ -38,6 +38,11 @@
                 </td>
             </tr>
             {% endfor %}
+            <tr>
+                <td colspan="3" class="bg-success p-2 text-white">
+                    <b >Add new? <a href="{% url 'reference:GenreCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+                </td>
+            </tr>
         </table>
       </div>
       <div class="col">
@@ -59,11 +64,15 @@
                 </td>
             </tr>
             {% endfor %}
+            <tr>
+                <td colspan="3" class="bg-success p-2 text-white">
+                    <b> Add new? <a href="{% url 'reference:AuthorCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+                </td>
+            </tr>
         </table>
       </div>
       <div class="col">
         <h1>Series</h1>
-        <h6>Add new series? <a href="{% url 'reference:SeriesCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -81,11 +90,15 @@
                 </td>
             </tr>
             {% endfor %}
+            <tr>
+                <td colspan="3" class="bg-success p-2 text-white">
+                    <b> Add new? <a href="{% url 'reference:SeriesCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+                </td>
+            </tr>
         </table>
       </div>
       <div class="col">
         <h1>Publish</h1>
-        <h6>Add new publish? <a href="{% url 'reference:PublishCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -103,6 +116,11 @@
                 </td>
             </tr>
             {% endfor %}
+            <tr>
+                <td colspan="3" class="bg-success p-2 text-white">
+                    <b> Add new? <a href="{% url 'reference:PublishCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+                </td>
+            </tr>
         </table>
       </div>
     </div>

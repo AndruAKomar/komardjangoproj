@@ -1,7 +1,7 @@
 <!-- шаблон для редактирования жанра в справочнике-->
 {% extends 'base.html' %}
 {% load static %}
-{% block TITLE %}Genre update{% endblock TITLE %}
+{% block TITLE %}{{object.name}} update{% endblock TITLE %}
 {% block BODY %}
     <H1>Update genre, pls</H1>
     <form action="" method="post" enctype="multipart/form-data">

@@ -3,12 +3,25 @@
 {% block TITLE %}Reference list{% endblock TITLE %}
 {% block BODY %}
 
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Reference List</h1>
+        <p class="lead text-body-secondary">Список справочников для просмотра, редактирования и удаления</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+      </div>
+    </div>
+  </section>
 <br>
 
 <div class="container text-center">
     <div class="row">
       <div class="col">
         <h1>Genre</h1>
+        <h6>Add new genre? <a href="{% url 'reference:GenreCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -29,7 +42,8 @@
         </table>
       </div>
       <div class="col">
-        <h1>Autors</h1>
+        <h1>Authors</h1>
+        <h6>Add new author? <a href="{% url 'reference:AuthorCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -41,9 +55,9 @@
                 <td>{{obj.pk}}</td>
                 <td>{{obj.name}}</td>
                 <td>
-                    <a href="{% url 'reference:GenreView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
-                    <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
-                    <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="{% url 'reference:AuthorView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
+                    <a href="{% url 'reference:AuthorUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
+                    <a href="{% url 'reference:AuthorDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
                 </td>
             </tr>
             {% endfor %}
@@ -51,6 +65,7 @@
       </div>
       <div class="col">
         <h1>Series</h1>
+        <h6>Add new series? <a href="{% url 'reference:SeriesCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -62,9 +77,9 @@
                 <td>{{obj.pk}}</td>
                 <td>{{obj.name}}</td>
                 <td>
-                    <a href="{% url 'reference:GenreView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
-                    <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
-                    <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="{% url 'reference:SeriesView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
+                    <a href="{% url 'reference:SeriesUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
+                    <a href="{% url 'reference:SeriesDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
                 </td>
             </tr>
             {% endfor %}
@@ -72,6 +87,7 @@
       </div>
       <div class="col">
         <h1>Publish</h1>
+        <h6>Add new publish? <a href="{% url 'reference:PublishCreateView' %}"><i class="bi bi-plus-square"></i></a></h6>
         <table border="1" align="center">
             <tr>
                 <th>pk</th>
@@ -83,9 +99,9 @@
                 <td>{{obj.pk}}</td>
                 <td>{{obj.name}}</td>
                 <td>
-                    <a href="{% url 'reference:GenreView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
-                    <a href="{% url 'reference:GenreUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
-                    <a href="{% url 'reference:GenreDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="{% url 'reference:PublishView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
+                    <a href="{% url 'reference:PublishUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
+                    <a href="{% url 'reference:PublishDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
                 </td>
             </tr>
             {% endfor %}

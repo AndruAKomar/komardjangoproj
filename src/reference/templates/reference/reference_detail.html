@@ -1,23 +1,21 @@
 <!-- шаблон для просмотра деталей жанра в справочнике -->
 {% extends 'base.html' %}
 {%load static%}
-{% block TITLE %}Genre detail{% endblock TITLE %}
+{% block TITLE %}{{models.name}}Reference detail{% endblock TITLE %}
 {% block BODY %}
 <main>
-    <h1>Details</h1>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-            <img src="{{object.picture.url}}" class="card-img-top" alt="..." >
-                <div class="card-body">
-                    <h5 class="card-title">{{object.name}}</h5>
-                    <p class="card-text">{{object.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal">Подробно</button>
-                </div>
-            </div>
+    <h1>Details about: {{object.name}}</h1>    
+    
+    <div class="card" style="width: 18rem;">
+        <img src="{{object.picture.url}}" class="card-img-top" alt="..." >
+        <div class="card-body">
+            <h5 class="card-title">{{object.name}}</h5>
+            <p class="card-text">{{object.description}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal">Подробно</button>
         </div>
     </div>
+        
 <!-- Modal -->
 <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

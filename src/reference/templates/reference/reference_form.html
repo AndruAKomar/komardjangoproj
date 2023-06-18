@@ -1,13 +1,14 @@
 <!-- шаблон для добавления нового жанра в справочник -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block TITLE %}Genre form add{% endblock TITLE %}
+{% block TITLE %}Reference form add{% endblock TITLE %}
 {% block BODY %}
     
-    <H1>Create new genre, pls</H1>
+    <H1>Сreate a new reference entry</H1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form|crispy}} 
         <button type="send" class="btn btn-success">Send</button>
-    </form>
+        <a href='/reference/reference-list' class="btn btn-danger">Cancel</a>
+       
 {% endblock BODY %}

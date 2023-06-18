@@ -33,10 +33,19 @@ from django.urls import reverse_lazy
 #Read 
 class GenreView(generic.DetailView):
     model = models.Genre
-
+    template_name = 'reference/reference_detail.html'
+    
 class AuthorView(generic.DetailView):
     model = models.Author
-    
+    template_name = 'reference/reference_detail.html'
+
+class SeriesView(generic.DetailView):
+    model = models.Series
+    template_name = 'reference/reference_detail.html'
+
+class PublishView(generic.DetailView):
+    model = models.Publish
+    template_name = 'reference/reference_detail.html'   
 
 #List 
 class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
@@ -55,21 +64,89 @@ class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.Lis
 #Create
 class GenreCreateView(generic.CreateView):
     model = models.Genre
-    #template_name = 'reference/genre_form.html'
+    template_name = 'reference/reference_form.html'
     fields = [
         "picture", "name", "description"
     ]
+    
+    def get_success_url(self) -> str:
+        return super().get_success_url()
+
+class AuthorCreateView(generic.CreateView):
+    model = models.Author
+    template_name = 'reference/reference_form.html'
+    fields = [
+        "name", "description"
+    ]
+    success_url = '/reference/reference-list'
+
+    def get_success_url(self) -> str:
+        return super().get_success_url()
+
+class SeriesCreateView(generic.CreateView):
+    model = models.Series
+    template_name = 'reference/reference_form.html'
+    fields = [
+        "name"
+    ]
+    success_url = '/reference/reference-list'
+    
+    def get_success_url(self) -> str:
+        return super().get_success_url()
+
+class PublishCreateView(generic.CreateView):
+    model = models.Publish
+    template_name = 'reference/reference_form.html'
+    fields = [
+        "name", "description"
+    ]
+    success_url = '/reference/reference-list'
+
     def get_success_url(self) -> str:
         return super().get_success_url()
 
 #Updata
 class GenreUpdateView(generic.UpdateView):
     model = models.Genre
-    template_name = 'reference/genre_update.html'
+    template_name = 'reference/reference_update.html'
     form_class= forms.GenreModelForm
-    
+ 
+class AuthorUpdateView(generic.UpdateView):
+    model = models.Author
+    template_name = 'reference/reference_update.html'
+    form_class= forms.AuthorModelForm
+    success_url = '/reference/reference-list' 
+
+class SeriesUpdateView(generic.UpdateView):
+    model = models.Series
+    template_name = 'reference/reference_update.html'
+    form_class= forms.SeriesModelForm
+    success_url = '/reference/reference-list'   
+
+class PublishUpdateView(generic.UpdateView):
+    model = models.Publish
+    template_name = 'reference/reference_update.html'
+    form_class= forms.PublishModelForm
+    success_url = '/reference/reference-list'  
+
 #Delete
 class GenreDeleteView(generic.DeleteView):
     model = models.Genre
-    template_name = 'reference/genre_delete.html' 
-    success_url = '/'
+    template_name = 'reference/reference_delete.html' 
+    success_url = '/reference/reference-list'
+
+class AuthorDeleteView(generic.DeleteView):
+    model = models.Author
+    template_name = 'reference/reference_delete.html' 
+    success_url = '/reference/reference-list'
+
+class SeriesDeleteView(generic.DeleteView):
+    model = models.Series
+    template_name = 'reference/reference_delete.html' 
+    success_url = '/reference/reference-list'
+
+class PublishDeleteView(generic.DeleteView):
+    model = models.Publish
+    template_name = 'reference/reference_delete.html' 
+    success_url = '/reference/reference-list'
+    

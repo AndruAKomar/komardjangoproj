@@ -12,7 +12,8 @@ class Genre(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse_lazy('reference:GenreView', kwargs={"pk":self.pk})
+        return reverse_lazy('reference:ReferenceListView')
+        # reverse_lazy('reference:GenreView', kwargs={"pk":self.pk})
         # return f"/genre/{self.pk}"
 
 class Author(models.Model):

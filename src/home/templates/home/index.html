@@ -16,7 +16,10 @@
         </div>
       </div>
     </section>
-  
+    {{book_list}}
+    {%for obj in book_list%}
+    <h6>{{obj.author.all}}</h6><br>
+    {% endfor %}
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
   

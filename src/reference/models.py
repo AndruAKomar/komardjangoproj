@@ -53,7 +53,8 @@ class Author(models.Model):
         return reverse_lazy('reference:AuthorView', kwargs={"pk":self.pk})
     
 class Series(models.Model):
-    name = models.BigIntegerField(verbose_name='Series book')
+    name = models.CharField(verbose_name='Series book', max_length=50)
+    # name = models.BigIntegerField(verbose_name='Series book')
     
     def __str__(self) -> str:
         return str(self.name)

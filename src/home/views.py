@@ -1,7 +1,9 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.views import generic
 from reference import models
 from reference.models import Genre
+from books.models import Book
 # Create your views here.
 
 #HomePage 
@@ -13,9 +15,7 @@ from reference.models import Genre
 class HomePage(generic.ListView):
     template_name='home/index.html'
     model= models.Genre
-    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-    #     cont =super().get_context_data(**kwargs)
-    #     cont["author_list"] = Author.objects.all()
-    #     cont["series_list"] = Series.objects.all()
-    #     cont["publish_list"] = Publish.objects.all()
-    #     return cont
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        cont = super().get_context_data(**kwargs)
+        cont['book_list']=Book.objects.all()
+        return cont

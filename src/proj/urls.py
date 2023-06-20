@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reference/', include('reference.urls', namespace='reference')),
+    path('books/', include('books.urls', namespace='books')),
     path('person/', include('person.urls', namespace='person')),
     path('', home_views.HomePage.as_view(), name='HomePage'),     #переход к домашней странице
 ] 

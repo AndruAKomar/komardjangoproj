@@ -5,12 +5,12 @@ app_name='books'
 urlpatterns = [
     path('books-list/', views.BooksListView.as_view(), name='BooksListView'),     #переход к просмотру всех товаров-книг
     
-    # path('genre/<int:pk>', views.GenreView.as_view(), name='GenreView'),   #переход к конкретному объекту/деталям Жанра по его РК
+    # path('book/<int:pk>', views.BookView.as_view(), name='BookView'),   #переход к конкретному объекту/деталям BOOK по его РК
     # path('author/<int:pk>', views.AuthorView.as_view(), name='AuthorView'),     #переход к просмотру всех объектов Авторов
     # path('series/<int:pk>', views.SeriesView.as_view(), name='SeriesView'),     #переход к просмотру всех объектов Серии
     # path('publish/<int:pk>', views.PublishView.as_view(), name='PublishView'),     #переход к просмотру всех объектов Издательст
         
-    # path('genre-add/', views.GenreCreateView.as_view(), name='GenreCreateView'),        #переход к форме для добавления нового Жанра
+    path('books-add/', views.BooksCreateView.as_view(), name='BooksCreateView'),        #переход к форме для добавления ново BOOK
     # path('author-add/', views.AuthorCreateView.as_view(), name='AuthorCreateView'),        #переход к форме для добавления Авторов 
     # path('series-add/', views.SeriesCreateView.as_view(), name='SeriesCreateView'),        #переход к форме для добавления Серии 
     # path('publish-add/', views.PublishCreateView.as_view(), name='PublishCreateView'),        #переход к форме для добавления Издательства 

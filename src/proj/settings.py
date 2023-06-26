@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'reference',
     'person',
     'books',
+    'orders',
     'home'
 ]
 

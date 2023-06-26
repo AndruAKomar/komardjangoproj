@@ -153,6 +153,10 @@
           {% else %}
           <a class="btn btn-primary" href="{% url 'person:login' %}" role="button" >you are not a superuser !!! GET login superuser ???</a><br>
         {% endif %} 
+        <a class="btn btn-primary" href="/" role="button" >index</a><br>
+        <a class="btn btn-primary" href="{% url 'person:logout' %}" role="button" >logout</a><br>
+        <a class="btn btn-primary" href="{% url 'books:BooksListView' %}" role="button" >boolslist</a><br>
+        <p>Please, use the following form to log-in. If you don't have an account <a href="{% url "person:register" %}">register here</a></p>
       </div>
       <div class="col-sm-4 offset-md-1 py-4">
         <h4>Account:</h4>
@@ -160,6 +164,7 @@
           <li><p class="text-body-secondary">{{user}}  -- {{user.first_name}}</p></li>
           <li><p class="text-body-secondary">Authenticated?{{user.is_authenticated}}</p></li>
           <li><p class="text-body-secondary">Anonymous? {{user.is_anonymous}}</p></li>
+          
           <li><a href="#" class="text-white">Follow on Twitter</a></li>
           <li><a href="#" class="text-white">Like on Facebook</a></li>
           <li><a href="#" class="text-white">Email me</a></li>

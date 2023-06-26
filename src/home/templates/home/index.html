@@ -16,36 +16,53 @@
         </div>
       </div>
     </section>
-    {{book_list}}
-    {%for obj in book_list%}
-    <h6>{{obj.author.all}}</h6><br>
-    {% endfor %}
+
+    {% comment %} {{object_list}} {% endcomment %}
+       
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
             {%for obj in object_list%}
-            <div class="col">
-            <div class="card shadow-sm">
-                {% comment %} <img src="{% static 'home/real-friends.jpg' %}" class="card-img-top" alt="..." > {% endcomment %}
-                <img src="{{obj.picture.url}}" class="card-img-top" alt="..." >
-                <div class="card-body">
-                    <h5 class="card-title">{{obj.name}}</h5>
-                    <p class="card-text">{{obj.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}">Подробно</button>
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="{{obj.picture.url}}" class="img-fluid rounded-start" alt="...">
                 </div>
-            </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="bookModal{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{obj.name}}</h5>
+                    <p class="card-text">{%for ob in obj.author.all%}<br>{{ob.name}}{% endfor %}</p>
+                    <p class="card-text"><small class="text-body-secondary">{{obj.price}} BYN</small></p>
+                    
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}">details</button>
+                    <a href="#" class="btn btn-outline-secondary">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+            </div> 
+             <!-- Modal -->
+             <div class="modal fade" id="bookModal{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Название книги: {{obj.name}}</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{obj.name}}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    {{obj.description}}
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <b>Genre: </b>{{obj.genre}}<br>
+                    <b>Authors: </b>{%for ob in obj.author.all%}{{ob.name}},{% endfor %}<br>
+                    <b>Series: </b>{{obj.series}}<br>
+                    <b>Year: </b>{{obj.year}}<br>
+                    <b>Pages: </b>{{obj.pages}}<br>
+                    <b>Pereplet: </b>{{obj.pereplet}}<br>
+                    <b>Format: </b>{{obj.formatbook}}<br>
+                    <b>ISBN: </b>{{obj.isbn}}<br>
+                    <b>Ves: </b>{{obj.ves}}<br>
+                    <b>Age restriction: </b>{{obj.agerestrict}}<br>
+                    <b>Publish: </b>{{obj.publish}}<br>
+                    <b>Rating: </b>{{obj.rating}}<br>
+                    
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -54,7 +71,8 @@
               </div>
             </div>
             <!-- Modal end-->
-            {% endfor %}
+            {% endfor %} 
+            
         </div>
       </div>
     </div>

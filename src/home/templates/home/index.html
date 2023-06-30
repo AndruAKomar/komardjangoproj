@@ -5,74 +5,88 @@
 {% block BODY %}
 <main>
     <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="row py-lg-15">
+        <div class="col-lg-8 col-md-6 mx-auto">
           <h1 class="fw-light">Book online store</h1>
           <p class="lead text-body-secondary">Welcome to our bookstore. Please register, make your choice, place an order through the shopping cart and redeem it. Happy shopping!</p>
         </div>
       </div>
     </section>
-
+        
     {% comment %} {{object_list}} {% endcomment %}
-       
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="scroll" style="height: 95rex; overflow-y: auto;">   
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-            {%for obj in object_list%}
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="{{obj.picture.url}}" class="img-fluid rounded-start" alt="...">
+              {%for obj in object_list%}
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="{{obj.genre_picture_med}}" style="width: 140px; height: 180px; margin: 5px;" type="button" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}"  class="img-fluid rounded-start" >
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{obj.name}}</h5>
+                      <p class="card-text">{%for ob in obj.author.all%}{{ob.name}}, {% endfor %}</p>
+                      <p class="card-text"><small class="text-body-secondary">{{obj.price}} BYN</small></p>
+                      <p class="card-text">
+                      <input type="number" class="text-body-secondary" id="add_to_cart{{obj.pk}}" min="1" max="100" value="1" id="dva"> шт
+                      <button type="button" class="btn btn-outline-secondary" onclick="addToCart({{obj.pk}})">Add to cart</button>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{obj.name}}</h5>
-                    <p class="card-text">{%for ob in obj.author.all%}<br>{{ob.name}}{% endfor %}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{obj.price}} BYN</small></p>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}">details</button>
-                    <a href="#" class="btn btn-outline-secondary">Add to cart</a>
+              </div> 
+              <!-- Modal -->
+              <div class="modal fade" id="bookModal{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{obj.name}}</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="card-img-top" style="width: 540px;">
+                      <img src="{{obj.picture.url}}" class="card-img-top" style="width: 300px; margin: 10px;" alt="..." >
+                    </div>
+                    <div class="modal-dialog modal-dialog-scrollable"> 
+                      <b>Genre: </b>{{obj.genre}}<br> 
+                      <b>Authors: </b>{%for ob in obj.author.all%}{{ob.name}},{% endfor %}<br>
+                      <b>Series: </b>{{obj.series}}<br>
+                      <b>Year: </b>{{obj.year}}<br>
+                      <b>Pages: </b>{{obj.pages}}<br>
+                      <b>Pereplet: </b>{{obj.pereplet}}<br>
+                      <b>Format: </b>{{obj.formatbook}}<br>
+                      <b>ISBN: </b>{{obj.isbn}}<br>
+                      <b>Ves: </b>{{obj.ves}}<br>
+                      <b>Age restriction: </b>{{obj.agerestrict}}<br>
+                      <b>Publish: </b>{{obj.publish}}<br>
+                      <b>Rating: </b>{{obj.rating}}<br>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div> 
-             <!-- Modal -->
-             <div class="modal fade" id="bookModal{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{obj.name}}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-dialog modal-dialog-scrollable">
-                    <b>Genre: </b>{{obj.genre}}<br>
-                    <b>Authors: </b>{%for ob in obj.author.all%}{{ob.name}},{% endfor %}<br>
-                    <b>Series: </b>{{obj.series}}<br>
-                    <b>Year: </b>{{obj.year}}<br>
-                    <b>Pages: </b>{{obj.pages}}<br>
-                    <b>Pereplet: </b>{{obj.pereplet}}<br>
-                    <b>Format: </b>{{obj.formatbook}}<br>
-                    <b>ISBN: </b>{{obj.isbn}}<br>
-                    <b>Ves: </b>{{obj.ves}}<br>
-                    <b>Age restriction: </b>{{obj.agerestrict}}<br>
-                    <b>Publish: </b>{{obj.publish}}<br>
-                    <b>Rating: </b>{{obj.rating}}<br>
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal end-->
-            {% endfor %} 
-            
+              <!-- Modal end-->
+              
+              {% endfor %} 
+              
+          </div>
         </div>
       </div>
     </div>
-  
-</main>
+  <script>
+    function addToCart(book_pk){
+      quantity = document.getElementById("add_to_cart"+book_pk)
+      console.log(quantity.value)
+      window.location.href="{% url "orders:cartview" %}" + `?good_id=${book_pk}&quantity=` + quantity.value
+      }
+  </script> 
+
+  </main>
      
 
 {% endblock BODY %}

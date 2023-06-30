@@ -26,6 +26,7 @@ urlpatterns = [
     path('reference/', include('reference.urls', namespace='reference')),
     path('books/', include('books.urls', namespace='books')),
     path('person/', include('person.urls', namespace='person')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('', home_views.HomePage.as_view(), name='HomePage'),     #переход к домашней странице
 ] 
 if settings.DEBUG:

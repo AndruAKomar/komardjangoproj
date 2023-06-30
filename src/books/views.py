@@ -14,12 +14,13 @@ class BooksListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListVie
     login_url=reverse_lazy('person:login')
     permission_required=['reference.add_genre','reference.delete_genre', 'books.add_book', 'books.delete_book', 'books.change_book' ]
     model = models.Book
+    
 
 #Read 
 class BookView(generic.DetailView):
     model = models.Book
-    form_class = forms.BooksModelForm
-    
+    template_name= 'books/book_detail.html' 
+
 #Create
 class BooksCreateView(generic.CreateView):
     model = models.Book

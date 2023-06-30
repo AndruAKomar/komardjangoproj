@@ -52,7 +52,7 @@ class PublishView(generic.DetailView):
 #List 
 class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     login_url=reverse_lazy('person:login')
-    permission_required=['reference.add_genre','reference.delete_genre']
+    permission_required=['reference.add_genre','reference.delete_genre','books.add_book', 'books.delete_book', 'books.change_book' ]
     model = models.Genre
     template_name = 'reference/reference_list.html'
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:

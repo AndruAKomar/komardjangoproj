@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block TITLE %}Books list{% endblock TITLE %}
+{%load static%}
+{% block TITLE %}Book detail{% endblock TITLE %}
 {% block BODY %}
 
 
@@ -9,7 +9,7 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Books List</h1>
-        <p class="lead text-body-secondary">Список книг для просмотра, добавления, редактирования и удаления</p>
+        <p class="lead text-body-secondary">для просмотра detail</p>
         <p>
           <a href="#" class="btn btn-primary my-2">Main call to action</a>
           <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -22,13 +22,23 @@
 <div class="container text-left" style="width: 30%;">
   <div>
     <H1>{{object}} book entry</H1>
-    <form action="" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{form|crispy}}
-      {% comment %} {{form.as_p}} {% endcomment %}
-      <button type="send" class="btn btn-success">Apply</button>
-      <a href='/books/books-list' class="btn btn-danger">Cancel</a>
+    
+        <div class="container text-left" >
+          <b>Genre: </b>{{object.genre}}<br>
+          <b>Authors: </b>{%for ob in object.author.all%}{{ob.name}},{% endfor %}<br>
+          <b>Series: </b>{{object.series}}<br>
+          <b>Year: </b>{{object.year}}<br>
+          <b>Pages: </b>{{object.pages}}<br>
+          <b>Pereplet: </b>{{object.pereplet}}<br>
+          <b>Format: </b>{{object.formatbook}}<br>
+          <b>ISBN: </b>{{object.isbn}}<br>
+          <b>Ves: </b>{{object.ves}}<br>
+          <b>Age restriction: </b>{{object.agerestrict}}<br>
+          <b>Publish: </b>{{object.publish}}<br>
+          <b>Rating: </b>{{object.rating}}<br>
+        </div>
+                  
   </div>
-</div>
+</div> 
 
 {% endblock BODY %}

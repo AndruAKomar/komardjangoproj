@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block TITLE %}Reference list{% endblock TITLE %}
+{% block TITLE %}Books list{% endblock TITLE %}
 {% block BODY %}
 
 
@@ -7,8 +7,9 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Reference List</h1>
-        <p class="lead text-body-secondary">Список справочников для просмотра, редактирования и удаления</p>
+        <h1 class="fw-light">Books List</h1>
+        <p class="lead text-body-secondary">Список книг для просмотра, добавления, редактирования и удаления</p>
+        <p class="lead text-body-secondary">!!! Доступен для суперюзера и менеджерам с правами !!!</p>
       </div>
     </div>
   </section>
@@ -22,6 +23,7 @@
           <tr>
               <th>pk</th>
               <th>name</th>
+              <th>image</th>
               <th>genre</th>
               <th>author</th>
               <th>series</th>
@@ -43,6 +45,7 @@
           <tr>
               <td>{{obj.pk}}</td>
               <td>{{obj.name}}</td>
+              <td><img src="{{obj.genre_picture_small}}" class="card-img-top" alt="..." ></td>
               <td>{{obj.genre}}</td>
               <td>{%for ob in obj.author.all%}{{ob.name}},{% endfor %}</td>
               <td>{{obj.series}}</td>
@@ -58,15 +61,17 @@
               <td>{{obj.rating}}</td>
               <td>{{obj.quantity}}</td>
               <td>{{obj.price}}</td>
-              <td>
-                  <a href="{% url 'books:BooksUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
-                  <a href="{% url 'books:BooksDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
+              <td class="bg-success p-1 text-white">
+                  <a href="{% url 'books:BooksUpdateView' pk=obj.pk %}" ><i class="bi bi-wrench-adjustable"></i></a>
+                  <a href="{% url 'books:BooksDeleteView' pk=obj.pk %}" ><i class="bi bi-trash3-fill"></i></a>
               </td>
           </tr>
           {% endfor %}
           <tr>
-              <td colspan="3" class="bg-success p-2 text-white">
-                  <b >Add new? <a href="{% url 'books:BooksCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+              <td colspan="3" class="bg-success p-1 text-white">
+                  <b><a href="{% url 'books:BooksCreateView' %}" class="btn btn-success">Add new? <i class="bi bi-plus-square"></i></a></b>
+              </td>
+              <td colspan="16" class="bg-success p-1 text-white">
               </td>
           </tr>
       </table>

@@ -23,12 +23,7 @@ class BooksModelForm(forms.ModelForm):
             "publish",
             "quantity",
             "activ",
-            "rating",
-            
-            ]
-
-
-
+            "rating"]
 
 
 

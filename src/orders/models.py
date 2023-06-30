@@ -15,7 +15,19 @@ class Cart(models.Model):
         null=True,
         blank=True 
     )
-    
+    @property
+    def total_price(self):
+        total_price=0
+        for good_in_cart in self.books.all():
+            total_price += good_in_cart.price
+        return total_price
+    @property
+    def total_quantity(self):
+        total_quantity=0
+        for good_in_cart in self.books.all():
+            total_quantity += good_in_cart.quantity
+        return total_quantity
+
 class BookInCart(models.Model):
     cart = models.ForeignKey(
         Cart,

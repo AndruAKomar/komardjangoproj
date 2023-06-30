@@ -13,7 +13,7 @@ class Book(models.Model):
     picture = models.ImageField(
         verbose_name='picture book', 
         upload_to='uploads/genre/', 
-        default='uploads/genre/real-friends.jpg', 
+        default='uploads/genre/image.png', 
         blank=True)
     price = models.DecimalField(
         verbose_name='Price',
@@ -85,7 +85,7 @@ class Book(models.Model):
         auto_now=False,
         auto_now_add=True,
         blank=True)
-        # default=timezone.now)
+        # default=timezone.now
     dateupdate = models.DateTimeField(
         verbose_name='Date update',
         auto_now=True,
@@ -103,7 +103,7 @@ class Book(models.Model):
     def genre_picture_med(self):
         original_url = self.picture.url
         new_url = original_url.split('.')
-        picture_url = '.'.join(new_url[:-1])+'_150_.' + new_url[-1]
+        picture_url = '.'.join(new_url[:-1])+'_140_.' + new_url[-1]
         return picture_url
     
     def genre_picture_small(self):
@@ -116,7 +116,7 @@ class Book(models.Model):
         extention =self.picture.file.name.split('.')[-1]
         BASE_DIR = Path(self.picture.file.name).resolve().parent
         file_name = Path(self.picture.file.name).resolve().name.split('.')
-        for m_basewidth in [150,40]:
+        for m_basewidth in [140,40]:
             im = Image.open(self.picture.file.name)
             wpercent = (m_basewidth/float(im.size[0]))
             hsize = int((float(im.size[1])*float(wpercent)))

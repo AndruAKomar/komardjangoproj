@@ -9,10 +9,6 @@
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">Book online store</h1>
           <p class="lead text-body-secondary">Welcome to our bookstore. Please register, make your choice, place an order through the shopping cart and redeem it. Happy shopping!</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
         </div>
       </div>
     </section>
@@ -34,7 +30,6 @@
                     <h5 class="card-title">{{obj.name}}</h5>
                     <p class="card-text">{%for ob in obj.author.all%}<br>{{ob.name}}{% endfor %}</p>
                     <p class="card-text"><small class="text-body-secondary">{{obj.price}} BYN</small></p>
-                    
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#bookModal{{obj.pk}}">details</button>
                     <a href="#" class="btn btn-outline-secondary">Add to cart</a>
                   </div>

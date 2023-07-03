@@ -2,42 +2,63 @@
 {%load static%}
 {% block TITLE %}cart{% endblock TITLE %}
 {% block BODY %}
-{{object}}
-{{object.total_quantity}}
+{% comment %} {{object}}
+{{object.total_quantity}} {% endcomment %}
 <div class="container text-left" style="width: 100%;">
     <div>
         <H1>Cart</H1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">quantity</th>
-                <th scope="col">price</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="scroll" style="height: 90rex; overflow-y: auto;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">price</th>
+                </tr>
+                </thead>
+                <tbody>
                 {% for good_in_cart in object.books.all %}
-            <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{good_in_cart.good.name}}</td>
-                <td>
-                    <div class="number">
-                    <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
-                    <input type="number" min="0" value="{{good_in_cart.quantity}}" readonly>
-                    <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
-                    </div>
-                </td>
-                <td>{{good_in_cart.price}}</td>
-            </tr>
-            {%endfor%}
-            <tr>
-                <td colspan="2">Total: </td>
-                <td colspan="1">{{object.total_quantity}}</td>
-                <td colspan="1">{{object.total_price}}</td>
-            </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{good_in_cart.good.name}}</td>
+                    <td>
+                        <div class="number">
+                        {% comment %} <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                        <input type="number" min="0" value="{{good_in_cart.quantity}}" readonly>
+                        <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button> {% endcomment %}
+                        <button class="number-minus" type="button" onclick="deleteGood({{good_in_cart.good.pk}})">-</button>
+                        <input type="number" min="0" value="{{good_in_cart.quantity}}" readonly>
+                        <button class="number-plus" type="button" onclick="addGood({{good_in_cart.good.pk}})">+</button>
+                        </div>
+                    </td>
+                    <td>{{good_in_cart.price}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2">Total: </td>
+                    <td colspan="1">{{object.total_quantity}}</td>
+                    <td colspan="1">{{object.total_price}}</td>
+                </tr>
+                </tbody>
+            </table>
+            {% if object.books.all %}
+                <button type="button" class="btn btn-success"  {%if user.is_anonymous%}disabled{% endif %} onclick="document.location='{% url 'orders:create-order' %}'"> 
+                Checkout</button> 
+                {%if user.is_anonymous%}<b> < To order, please register or login</b>{% endif %}
+            {% endif %}
+        </div>    
     </div>
 </div> 
+<script>
+    function addGood(pk) {
+        redirect("add", pk)
+    }
+    function deleteGood(pk) {
+        redirect("delete", pk)
+    }
+    function redirect(action, pk) {
+        window.location.href = "{% url "orders:cart-items-edit" %}" + `?action=${action}&good=${pk}`;      
+    }
+</script>
 {% endblock BODY %}

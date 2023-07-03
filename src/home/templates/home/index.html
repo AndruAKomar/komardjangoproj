@@ -14,7 +14,7 @@
     </section>
         
     {% comment %} {{object_list}} {% endcomment %}
-    <div class="scroll" style="height: 95rex; overflow-y: auto;">   
+    <div class="scroll" style="height: 90rex; overflow-y: auto;">   
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -31,8 +31,8 @@
                       <p class="card-text">{%for ob in obj.author.all%}{{ob.name}}, {% endfor %}</p>
                       <p class="card-text"><small class="text-body-secondary">{{obj.price}} BYN</small></p>
                       <p class="card-text">
-                      <input type="number" class="text-body-secondary" id="add_to_cart{{obj.pk}}" min="1" max="100" value="1" id="dva"> шт
-                      <button type="button" class="btn btn-outline-secondary" onclick="addToCart({{obj.pk}})">Add to cart</button>
+                      <input type="number" class="text-body-secondary" id="add_to_cart{{obj.pk}}" min="1" max="100" value="1" > шт
+                      <button type="button" class="btn btn-outline-secondary" onclick="addToCart({{obj.pk}});return false;">Add to cart</button>
                       </p>
                     </div>
                   </div>
@@ -83,7 +83,10 @@
       quantity = document.getElementById("add_to_cart"+book_pk)
       console.log(quantity.value)
       window.location.href="{% url "orders:cartview" %}" + `?good_id=${book_pk}&quantity=` + quantity.value
-      }
+      {% comment %} window.location.replace("{% url "HomePage" %}")
+      window.location.reload() {% endcomment %}
+      
+    }
   </script> 
 
   </main>

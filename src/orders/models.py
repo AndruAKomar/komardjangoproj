@@ -5,7 +5,7 @@ from reference.models import Status
 # Create your models here.
 User = get_user_model()
 
-
+# Cart
 class Cart(models.Model):
     customer = models.ForeignKey(
         User,
@@ -28,6 +28,7 @@ class Cart(models.Model):
             total_quantity += good_in_cart.quantity
         return total_quantity
 
+# Goods in cart
 class BookInCart(models.Model):
     cart = models.ForeignKey(
         Cart,
@@ -61,7 +62,8 @@ class BookInCart(models.Model):
     )
     def __str__(self) -> str:
         return f'{self.good.name} x {self.quantity}'
-    
+
+#Order   
 class Order(models.Model):
     delivery_adress = models.TextField(
         verbose_name='Delivery_adress',
@@ -89,3 +91,4 @@ class Order(models.Model):
         auto_now=True,
         auto_now_add=False
     )
+

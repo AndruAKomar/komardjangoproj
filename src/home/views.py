@@ -4,7 +4,9 @@ from django.views import generic
 from books import models
 from books.models import Book
 from django.contrib.auth.models import Group
-from orders.models import Cart
+from orders.models import Cart, BookInCart
+from django.urls import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 
@@ -19,9 +21,12 @@ from orders.models import Cart
 class HomePage(generic.ListView):
     template_name='home/index.html'
     model= models.Book
+         
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         cont =super().get_context_data(**kwargs)
         if self.request.session.get("cart_id"):
             cart_pk = self.request.session.get("cart_id")
-            cont["total_quantity_in_cart"] = Cart.objects.get(pk=3).total_quantity
+            cont["total_quantity_in_cart"] = Cart.objects.get(pk=cart_pk).total_quantity
         return cont
+    
+    

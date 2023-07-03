@@ -14,7 +14,6 @@ class LogoutView(auth_views.LogoutView):
 
 # create customer
 
-
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)

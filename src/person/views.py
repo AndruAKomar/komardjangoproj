@@ -1,19 +1,27 @@
 from django.shortcuts import render
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
+from . import forms
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import Group
+from django.views import generic
 
-# Create your views here.
-
+# 
 class LoginView(auth_views.LoginView):
     template_name = 'person/login.html'
 
 class LogoutView(auth_views.LogoutView):
     template_name = 'person/logout.html'
 
-# create customer
 
+#Update   
+class UserUpdateView(generic.UpdateView):
+    model= User
+    form_class= forms.UserUpdateForm
+    template_name = 'person/user_update.html'
+    success_url = '/'
+
+# 
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)

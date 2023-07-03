@@ -154,7 +154,7 @@
         <p class="text-body-secondary">
           <i class="bi bi-geo-alt">   Address: Minsk, Lenina street, 1</i><br>
           <i class="bi bi-telephone-outbound">   Tel: +375(29)1234567</i><br>
-          <i class="bi bi-envelope-at">  Sent us: bookssop@tut.by.com</i>  </p>
+          <i class="bi bi-envelope-at">  Sent us: booksshop@tut.by.com</i>  </p>
       </div>
       
       <div class="col-sm-4 offset-md-1 py-4">
@@ -176,7 +176,7 @@
                 <li><a class="dropdown-item" href="{% url 'person:login' %}">Login</a></li>
                 {% else %}
                 <li><a class="dropdown-item" href="{% url 'person:logout' %}">Logout</a></li>
-                <li><a class="dropdown-item" href="#">Edit account</a></li>
+                <li><a class="dropdown-item" href="{% url 'person:user-update' pk=user.pk%}">Edit account</a></li>
                 {% endif %}
               </ul>
           </div>

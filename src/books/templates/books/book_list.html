@@ -4,6 +4,16 @@
 
 
 {% comment %} {{object_list}} {% endcomment %}
+<section class="py-5 text-center container">
+  <div class="row py-lg-3">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Books List</h1>
+      <p class="lead text-body-secondary">Список книг для просмотра, добавления, редактирования и удаления</p>
+      <p class="lead text-body-secondary">!!! Доступен для суперюзера и менеджерам с правами !!!</p>
+      <b><a href = "{% url 'books:BooksCreateView' %}" class="btn btn-success"> Add new <i class="bi bi-plus-square"></i></a></b>
+    </div>
+  </div>
+</section>
 
 <div  class="scroll" style="height: 80rex; overflow-y: auto;">  
   <div class="container text-center">
@@ -33,13 +43,16 @@
           </tr>
           <tr>
           </tr>
-          {%for obj in object_list%}
+          {% for obj in object_list%}
           <tr>
             <td>{{obj.pk}}</td>
             <td>{{obj.name}}</td>
             <td><img src="{{obj.genre_picture_small}}" class="card-img-top" alt="..." ></td>
             <td>{{obj.genre}}</td>
-            <td>{%for ob in obj.author.all%}{{ob.name}}{%if not forloop.last%}, {% endif %}{% endfor %}</td>
+            <td>{% for ob in obj.author.all%}
+              {{ob.name}}
+              {%if not forloop.last%}, {% endif %}
+              {% endfor %}</td>
             <td>{{obj.series}}</td>
             <td>{{obj.year}}</td>
             <td>{{obj.pages}}</td>

@@ -51,7 +51,7 @@ class Book(models.Model):
         verbose_name='format book',
         max_length=30,
         blank=True,
-        default="encyclopedia")
+        default="encyclopedi")
     isbn = models.BigIntegerField(
         verbose_name='ISBN book',
         blank=True,

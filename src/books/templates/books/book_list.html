@@ -5,65 +5,72 @@
 
 {% comment %} {{object_list}} {% endcomment %}
 <section class="py-5 text-center container">
-    <div class="row py-lg-5">
+    <div class="row py-lg-3">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Books List</h1>
         <p class="lead text-body-secondary">Список книг для просмотра, добавления, редактирования и удаления</p>
         <p class="lead text-body-secondary">!!! Доступен для суперюзера и менеджерам с правами !!!</p>
+        <b><a href="{% url 'books:BooksCreateView' %}" class="btn btn-success">Add new <i class="bi bi-plus-square"></i></a></b>
       </div>
     </div>
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-      <table class="table table-bordered">
+  </section>
+
+<div  class="scroll" style="height: 80rex; overflow-y: auto;">  
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered">
           <tr>
-              <th>pk</th>
-              <th>name</th>
-              <th>image</th>
-              <th>genre</th>
-              <th>author</th>
-              <th>series</th>
-              <th>year</th>
-              <th>pages</th>
-              <th>pereplet</th>
-              <th>formatbook</th>
-              <th>isbn</th>
-              <th>ves</th>
-              <th>agerestrict</th>
-              <th>publish</th>
-              <th>activ</th>
-              <th>rating</th>
-              <th>quantity</th>
-              <th>price</th>
-              <th>actions</th>
+            <th>pk</th>
+            <th>name</th>
+            <th>image</th>
+            <th>genre</th>
+            <th>author</th>
+            <th>series</th>
+            <th>year</th>
+            <th>pages</th>
+            <th>pereplet</th>
+            <th>formatbook</th>
+            <th>isbn</th>
+            <th>ves</th>
+            <th>agerestrict</th>
+            <th>publish</th>
+            <th>activ</th>
+            <th>rating</th>
+            <th>quantity</th>
+            <th>price</th>
+            <th>actions</th>
+          </tr>
+          <tr>
           </tr>
           {%for obj in object_list%}
           <tr>
-              <td>{{obj.pk}}</td>
-              <td>{{obj.name}}</td>
-              <td><img src="{{obj.genre_picture_small}}" class="card-img-top" alt="..." ></td>
-              <td>{{obj.genre}}</td>
-              <td>{%for ob in obj.author.all%}{{ob.name}},{% endfor %}</td>
-              <td>{{obj.series}}</td>
-              <td>{{obj.year}}</td>
-              <td>{{obj.pages}}</td>
-              <td>{{obj.pereplet}}</td>
-              <td>{{obj.formatbook}}</td>
-              <td>{{obj.isbn}}</td>
-              <td>{{obj.ves}}</td>
-              <td>{{obj.agerestrict}}</td>
-              <td>{{obj.publish}}</td>
-              <td>{{obj.activ}}</td>
-              <td>{{obj.rating}}</td>
-              <td>{{obj.quantity}}</td>
-              <td>{{obj.price}}</td>
+            <td>{{obj.pk}}</td>
+            <td>{{obj.name}}</td>
+            <td><img src="{{obj.genre_picture_small}}" class="card-img-top" alt="..." ></td>
+            <td>{{obj.genre}}</td>
+            <td>{%for ob in obj.author.all%}{{ob.name}}{%if not forloop.last%}, {% endif %}{% endfor %}</td>
+            <td>{{obj.series}}</td>
+            <td>{{obj.year}}</td>
+            <td>{{obj.pages}}</td>
+            <td>{{obj.pereplet}}</td>
+            <td>{{obj.formatbook}}</td>
+            <td>{{obj.isbn}}</td>
+            <td>{{obj.ves}}</td>
+            <td>{{obj.agerestrict}}</td>
+            <td>{{obj.publish}}</td>
+            <td>{{obj.activ}}</td>
+            <td>{{obj.rating}}</td>
+            <td>{{obj.quantity}}</td>
+            <td>{{obj.price}}</td>
               <td class="bg-success p-1 text-white">
                   <a href="{% url 'books:BooksUpdateView' pk=obj.pk %}" ><i class="bi bi-wrench-adjustable"></i></a>
                   <a href="{% url 'books:BooksDeleteView' pk=obj.pk %}" ><i class="bi bi-trash3-fill"></i></a>
               </td>
           </tr>
           {% endfor %}
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 </div>

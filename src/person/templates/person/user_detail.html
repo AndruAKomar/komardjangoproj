@@ -1,0 +1,37 @@
+<!-- шаблон для редактирования жанра в справочнике-->
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block TITLE %}{{object}} update{% endblock TITLE %}
+{% block BODY %}
+{{object}}
+{{object.first_name}}
+{{object.telephone_number}}
+{{object.email}}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">User account</h1>
+        <p class="lead text-body-secondary">для просмотра account</p>
+      </div>
+    </div>
+  </section>
+<br>
+
+<div class="container text-left" style="width: 30%;">
+  <div>
+    <H1>{{object}}  account</H1>
+    
+        <div class="container text-left" >
+          <b>1: </b>{{object.first_name}}<br>
+          <b>2: </b>{{object.last_name}}<br>
+          <b>3: </b>{{object.email}}<br>
+          <b>4: </b>{{object.telephone_number}}<br>
+          <b>5: </b>{{object.home_address}}<br>
+          <b>6: </b>{{object.delivery_adress}}<br>
+          
+        </div>
+                  
+  </div>
+</div>  
+{% endblock BODY %}

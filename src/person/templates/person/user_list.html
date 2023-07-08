@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block TITLE %}Users list{% endblock TITLE %}
+{% block BODY %}
+
+
+{{object_list}}<br>
+{{order_list.5.cart.customer}}<br>
+{{order_list.all.catr.5}}<br>
+
+{{order_list}}
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Users List</h1>
+        <p class="lead text-body-secondary">Список пользователей и сотрудников</p>
+        <p class="lead text-body-secondary">!!! Доступен для суперюзера и менеджерам с правами !!!</p>
+      </div>
+    </div>
+  </section>
+<br>
+{{total}}
+<div class="scroll" style="width: 250rex; height: 70rex; overflow-x: auto; overflow-y: auto;"> 
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h1>Users</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>pk</th>
+                <th>username</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>email</th>
+                <th>groups</th>
+                <th>home_address</th>
+                <th>telephone_number</th>
+                <th>delivery_adress</th>
+                <th>status</th>
+                <th>order</th>
+                <th>other</th>
+                
+                
+                
+            </tr>
+            {%for obj in object_list%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{obj.pk}}</td>
+                <td>{{obj.username}}</td>
+                <td>{{obj.first_name}}</td>
+                <td>{{obj.last_name}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.groups.first}}</td>
+                <td>{{obj.home_address}}</td>
+                <td>{{obj.telephone_number}}</td>
+                <td>{{obj.delivery_adress}}</td>
+                <td>
+                {%for ord in order_list%}
+                    {% if ord.cart.customer.username == obj.username %}{{ord.status}}{%endif%}
+                {% endfor %}
+                </td>
+                <td>
+                {%for ord in order_list%}
+                    {% if ord.cart.customer.username == obj.username %}<a href="{% url 'orders:order-update' pk=ord.pk %}" > {{ord}}</a> {%endif%}
+                {% endfor %}
+                </td>
+                {% comment %} <td>{{obj.ves}}</td>
+                <td>{{obj.agerestrict}}</td>
+                <td>{{obj.publish}}</td>
+                <td>{{obj.activ}}</td>
+                <td>{{obj.rating}}</td>
+                <td>{{obj.quantity}}</td>
+                <td>{{obj.price}}</td> {% endcomment %}
+                {% comment %} <td class="bg-success p-1 text-white">
+                    <a href="{% url 'books:BooksUpdateView' pk=obj.pk %}" ><i class="bi bi-wrench-adjustable"></i></a>
+                    <a href="{% url 'books:BooksDeleteView' pk=obj.pk %}" ><i class="bi bi-trash3-fill"></i></a>
+                </td> {% endcomment %}
+            </tr>
+            {% endfor %}
+            
+        </table>
+      </div>
+    </div>
+  </div> 
+</div>
+
+{% endblock BODY %}

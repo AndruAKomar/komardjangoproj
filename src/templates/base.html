@@ -180,12 +180,17 @@
                 {% endif %}
               </ul>
           </div>
-          <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" {%if not user.is_superuser%}hidden{% endif %}>
-            Administration
+          <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" 
+          {%if not user.is_staff %}{%  if not user.is_superuser %}
+          hidden
+          {% endif %}hidden
+          {% endif %}>
+            Administration 
           </button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'books:BooksListView' %}">BooksListView</a></li>
             <li><a class="dropdown-item" href="{% url 'reference:ReferenceListView' %}">ReferenceListView</a></li>
+            <li><a class="dropdown-item" href="{% url 'person:UsersListView' %}">UsersListView</a></li>
           </ul>
           <button type="button" class="btn btn-outline-primary" {%if not total_quantity_in_cart %}disabled{% endif %} onclick="document.location='{% url 'orders:cartview' %}'">
             <i class="bi bi-cart4"></i>

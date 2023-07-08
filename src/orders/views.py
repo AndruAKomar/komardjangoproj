@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import DetailView, FormView, TemplateView
+from django.views.generic import DetailView, FormView, TemplateView, UpdateView
 from typing import Any, Dict, Optional
 from django.shortcuts import get_object_or_404
 from books.models import Book
@@ -117,11 +117,18 @@ class OrderCreateView(FormView):
 
     def form_valid(self, form):
         delivery_adress = form.cleaned_data.get('delivery_adress')
-        status = Status.objects.get(pk=1)
+        status = Status.objects.get(pk=4)
+        
         cart_pk = self.request.session.get("cart_id")
+        # updating the USER when forming an order 
+        customer_login = Cart.objects.get(pk=cart_pk)
+        customer_login.customer=self.request.user
+        customer_login.save(update_fields=["customer"])
+        #
         cart = get_object_or_404(
            Cart, 
-           pk=cart_pk
+           pk=cart_pk,
+        
         ) 
         obj = Order.objects.create(
             delivery_adress = delivery_adress,
@@ -137,8 +144,15 @@ class OrderCreateView(FormView):
             cart_pk = self.request.session.get('cart_id')
             cont["total_quantity_in_cart"] = Cart.objects.get(pk=cart_pk).total_quantity
             cont["object"] = Cart.objects.get(pk=cart_pk)
-
+            
         return cont
     
 class OrderSuccess(TemplateView):
     template_name = "orders/order_complite.html"
+
+#Update   
+class OrderUpdateView(UpdateView):
+    model= Order
+    form_class= forms.OrderModelForm
+    template_name = "orders/order_update.html"
+    success_url= '/person/user-list'

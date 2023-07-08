@@ -176,7 +176,7 @@
                 <li><a class="dropdown-item" href="{% url 'person:login' %}">Login</a></li>
                 {% else %}
                 <li><a class="dropdown-item" href="{% url 'person:logout' %}">Logout</a></li>
-                <li><a class="dropdown-item" href="{% url 'person:user-update' pk=user.pk%}">Edit account</a></li>
+                <li><a class="dropdown-item" href="{% url 'person:person-update'%}">Edit account</a></li>
                 {% endif %}
               </ul>
           </div>

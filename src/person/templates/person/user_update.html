@@ -9,8 +9,9 @@
         <H1>{{object}} update:</H1>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{form|crispy}}
-            {% comment %} {{form.as_p}} {% endcomment %}
+            {{user_form|crispy}}
+            {{person_form|crispy}}
+            {% comment %} {{user_form.as_p}} {% endcomment %}
             <button type="submit" class="btn btn-outline-secondary">Submit</button>
         </form>
     </div>

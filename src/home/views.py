@@ -23,6 +23,7 @@ class HomePage(generic.ListView):
     model= models.Book
          
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        # del self.request.session['cart_id']
         cont =super().get_context_data(**kwargs)
         if self.request.session.get("cart_id"):
             cart_pk = self.request.session.get("cart_id")

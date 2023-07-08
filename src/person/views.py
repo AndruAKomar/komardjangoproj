@@ -3,11 +3,13 @@ from django.shortcuts import render
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from . import forms
+from .models import Person
 from orders.models import Order, Cart
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import Group
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .forms import UserRegistrationForm, PersonRegistrationForm, UserUpdateForm, PersonUpdateForm
 from django.urls import reverse_lazy
 
 # 
@@ -60,7 +62,36 @@ def register(request):
             # Save the User object
             new_user.save()
             new_user.groups.add(Group.objects.get(name='Customers'))
+            # Create the user person with доп параметры
+            telephone_number = user_form.cleaned_data.get('telephone_number')
+            home_address = user_form.cleaned_data.get('home_address')
+            delivery_adress = user_form.cleaned_data.get('delivery_adress')
+            person = Person.objects.create(
+                user=new_user, 
+                telephone_number = telephone_number,
+                home_address = home_address, 
+                delivery_adress = delivery_adress)
             return render(request, 'person/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
+        # person_form = PersonRegistrationForm()
     return render(request, 'person/register.html', {'user_form': user_form})
+
+
+
+# @login_required
+def update(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(instance=request.user, data=request.POST)
+        person_form = PersonUpdateForm(instance=request.user.person, data=request.POST, files=request.FILES)
+        if user_form.is_valid() and person_form.is_valid():
+            user_form.save()
+            person_form.save()
+            return render(request, 'person/register_done.html')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        person_form = PersonUpdateForm(instance=request.user.person)
+        return render(request,
+                      'person/user_update.html',
+                      {'user_form': user_form,
+                       'person_form': person_form})

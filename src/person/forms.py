@@ -5,10 +5,6 @@ from django.contrib.auth.models import User
 
 
 class UserUpdateForm(forms.ModelForm):
-    telephone_number = forms.CharField(label='Telephone_number', widget=forms.TextInput, max_length=50, required=False)
-    home_address = forms.CharField(label='Home_address', widget=forms.TextInput, max_length=50, required=False)
-    delivery_adress = forms.CharField(label='Delivery_adress', widget=forms.TextInput, max_length=50, required=False)
-    
     class Meta:
         model = User
         fields = ('username', 'first_name','last_name', 'email',  'telephone_number', 'home_address', 'delivery_adress')

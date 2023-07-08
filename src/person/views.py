@@ -58,8 +58,6 @@ def register(request):
             # Set the chosen password
             new_user.set_password(user_form.cleaned_data['password'])
             # Save the User object
-            newuser=User()
-            newuser.telephone_number=request.POST.get("namesdg")
             new_user.save()
             new_user.groups.add(Group.objects.get(name='Customers'))
             return render(request, 'person/register_done.html', {'new_user': new_user})

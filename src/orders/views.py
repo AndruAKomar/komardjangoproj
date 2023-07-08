@@ -26,7 +26,6 @@ class CartDetailView(DetailView):
 
     def get_object(self, *args, **kwargs):
         # cart_id
-        
         cart_pk = self.request.session.get("cart_id") # int / None
         customer = self.request.user # User / AnonimousUser -> User / None
         if customer.is_anonymous:
@@ -124,10 +123,6 @@ class OrderCreateView(FormView):
            Cart, 
            pk=cart_pk
         ) 
-        print(delivery_adress)
-        print(status)
-        print(cart_pk)
-        print(cart)
         obj = Order.objects.create(
             delivery_adress = delivery_adress,
             status= status,

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block TITLE %}Book detail{% endblock TITLE %}
+{% block BODY %}
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Orders List</h1>
+        <p class="lead text-body-secondary">для просмотра detail</p>
+      </div>
+    </div>
+  </section>
+<br>
+
+<div class="container text-left" style="width: 30%;">
+  <div>
+    <H1>{{object}}</H1>
+    
+        <div class="container text-left" >
+          <b>Cart: </b>{{object.cart}}<br>
+          <b>Goods in cart: </b>{%for good in object_cart%}
+          {% if good.cart == object.cart %}
+           {{good}} /
+          {%endif%}
+          {% endfor %}<br>
+          <b>Status: </b>{{object.status}}<br>
+          <b>Delivery adress: </b>{{object.delivery_adress}}<br>
+          <b>created: </b>{{object.created}}<br>
+          <b>updated: </b>{{object.updated}}<br>
+        </div>
+                  
+  </div>
+</div> 
+
+{% endblock BODY %}

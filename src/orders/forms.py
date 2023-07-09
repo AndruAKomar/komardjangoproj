@@ -13,3 +13,8 @@ class OrderModelForm(forms.ModelForm):
     class Meta: 
         model = models.Order
         fields = ['status', 'delivery_adress']
+
+class OrderDetailForm(forms.ModelForm):
+    class Meta: 
+        model = models.Order
+        fields = ('status', 'delivery_adress', 'cart')

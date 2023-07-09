@@ -1,15 +1,22 @@
 from django import forms
 from . import models
+from orders.models import Order
 from .models import Person
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
+class UserDetailForm(forms.ModelForm):
+    class Meta: 
+        model = User
+        fields = ('username', 'first_name','last_name', 'email')
+
 # рассширяем модель ЮЗЕР доп полями ПЕРСОН. Создаем вторую форму
  
 class UserUpdateForm(forms.ModelForm):
+    order = forms.CharField(label='Orders', widget=forms.TextInput, max_length=50, required=False)
     class Meta:
         model = User
-        fields = ('username', 'first_name','last_name', 'email')
+        fields = ('username', 'first_name','last_name', 'email', "order")
 
 class PersonUpdateForm(forms.ModelForm):
     class Meta:
@@ -25,7 +32,7 @@ class UserRegistrationForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ('username', 'first_name','last_name', 'email','telephone_number')
+        fields = ('username', 'first_name','last_name', 'email')
 
     def clean_password2(self):
         # self.User.create(telephone_number='123')

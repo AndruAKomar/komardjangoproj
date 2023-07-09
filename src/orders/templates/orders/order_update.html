@@ -6,13 +6,23 @@
 {% block BODY %}
 <div class="container text-left" style="width: 30%;">
     <div>
-        <H1>{{object}} update:</H1>
+        <H1>{{object}} update:</H1><br>
+        <div class="container text-center" >
+            <b>Goods in cart: </b>{%for good in object_cart%}
+            {% if good.cart == object.cart %}
+             {{good}} /
+            {%endif%}
+            {% endfor %}<br>
+            <b>created: </b>{{object.created}}<br>
+            <b>updated: </b>{{object.updated}}<br>
+        </div>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form|crispy}}
             {% comment %} {{form.as_p}} {% endcomment %}
             <button type="submit" class="btn btn-outline-secondary">Submit</button>
         </form>
-    </div>
-</div>
+    </div>z
+</div> 
+
 {% endblock BODY %}

@@ -9,6 +9,7 @@ from .models import Cart, BookInCart, Order
 from reference.models import Status
 from django.db import models
 from . import forms
+from person.models import Person
 
 # Create your views here.
 
@@ -134,6 +135,7 @@ class OrderCreateView(FormView):
             status= status,
             cart= cart
         )
+      
         del self.request.session['cart_id']
         return super().form_valid(form)
     
@@ -155,3 +157,19 @@ class OrderUpdateView(UpdateView):
     form_class= forms.OrderModelForm
     template_name = "orders/order_update.html"
     success_url= '/person/user-list'
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        cont =super().get_context_data(**kwargs)
+        cont["object_cart"] = BookInCart.objects.all()
+        return cont
+
+#Detail    
+class OrderDetailView(DetailView):
+    model= Order
+    template_name = 'orders/order_detail.html'
+    success_url = '/'
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        cont =super().get_context_data(**kwargs)
+        cont["object_cart"] = BookInCart.objects.all()
+        return cont

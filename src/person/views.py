@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 from . import forms
 from .models import Person
 from orders.models import Order, Cart
+from orders.forms import OrderModelForm, OrderDetailForm
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import Group
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .forms import UserRegistrationForm, PersonRegistrationForm, UserUpdateForm, PersonUpdateForm
+from .forms import UserRegistrationForm, PersonRegistrationForm, UserUpdateForm, PersonUpdateForm, UserDetailForm
 from django.urls import reverse_lazy
 
 # 
@@ -20,19 +21,14 @@ class LogoutView(auth_views.LogoutView):
     template_name = 'person/logout.html'
 
 
-#Detail    
-class UserDetailView(generic.DetailView):
-    model= User
-    form_class= forms.UserUpdateForm
-    template_name = 'person/user_detail.html'
-    success_url = '/'
+
 
 #Update   
-class UserUpdateView(generic.UpdateView):
-    model= User
-    form_class= forms.UserUpdateForm
-    template_name = 'person/user_update.html'
-    success_url = '/'
+# class UserUpdateView(generic.UpdateView):
+#     model= User
+#     form_class= forms.UserUpdateForm
+#     template_name = 'person/user_update.html'
+#     success_url = '/'
 
 #users List
 class UsersListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
@@ -44,6 +40,7 @@ class UsersListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListVie
     def get_context_data(self, **kwargs):
         cont = super().get_context_data(**kwargs)
         cont["order_list"] = Order.objects.all()
+        cont["person_list"] = Person.objects.all()
         
         # cont["total_quantity_in_cart"] = Order.objects.get(pk=3)
         # cont["total"] = Order.objects.get(pk=7).cart.customer
@@ -94,3 +91,23 @@ def update(request):
                       'person/user_update.html',
                       {'user_form': user_form,
                        'person_form': person_form})
+    
+# def view_user_detail(request, user_pk):
+#     user = User.objects.get(pk=user_pk)
+#     form = UserDetailForm(instance=user)
+#     order_form = OrderDetailForm()
+#     return render(request, 'person/user_detail.html', {
+#         'form': form, 'order_form':order_form 
+#     })
+
+
+#Detail    
+class UserDetailView(generic.DetailView):
+    model= User
+    template_name = 'person/user_detail.html'
+    success_url = '/'
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        cont =super().get_context_data(**kwargs)        
+        cont["object_order"] = Order.objects.all()
+        return cont

@@ -83,8 +83,7 @@
       quantity = document.getElementById("add_to_cart"+book_pk)
       console.log(quantity.value)
       window.location.href="{% url "orders:cartview" %}" + `?good_id=${book_pk}&quantity=` + quantity.value
-      {% comment %} window.location.replace("{% url "HomePage" %}")
-      window.location.reload() {% endcomment %}
+
       
     }
   </script> 

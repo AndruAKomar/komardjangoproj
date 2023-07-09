@@ -173,7 +173,6 @@
               <ul class="dropdown-menu">
                 {%if user.is_anonymous%}
                 <li><a class="dropdown-item" href="{% url 'person:register' %}">Register</a></li>
-                <li><a class="dropdown-item" href="{% url 'person:login' %}">Login</a></li>
                 {% else %}
                 <li><a class="dropdown-item" href="{% url 'person:logout' %}">Logout</a></li>
                 <li><a class="dropdown-item" href="{% url 'person:person-update'%}">Edit account</a></li>

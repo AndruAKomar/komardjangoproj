@@ -91,7 +91,6 @@ class CartAddDeleteItemView(DetailView):
         if good_id and action and action in ['add', 'delete']:
             good = Book.objects.get(pk=int(good_id))
             price = Book.objects.get(pk=int(good_id)).price
-            print(cart, good)
             good_in_cart = get_object_or_404(
                 BookInCart,
                 cart__pk=cart.pk,

@@ -2,11 +2,16 @@
 {% extends 'base.html' %}
 {% block TITLE %}Books delete{% endblock TITLE %}
 {% block BODY %}
-    <H1>Delete: {{object}} ?</H1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-success">Yes</button>
-        <a href='/books/books-list' class="btn btn-danger">Cancel</a>
-    </form>
+    <div class="container text-center" style="height: 90rex;">
+        <div>
+            <form action="" method="post">
+            <H1>Delete: {{object}} ?</H1>
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-success">Yes</button>
+            <a href='/books/books-list' class="btn btn-danger">Cancel</a>
+        </form>
+        </div>
+    </div>
+    
 {% endblock BODY %}

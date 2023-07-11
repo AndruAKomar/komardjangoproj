@@ -99,7 +99,7 @@ class Book(models.Model):
         return reverse_lazy('books:BooksListView')
         # reverse_lazy('reference:GenreView', kwargs={"pk":self.pk})
         # return f"/genre/{self.pk}"
-
+         
     def genre_picture_med(self):
         original_url = self.picture.url
         new_url = original_url.split('.')

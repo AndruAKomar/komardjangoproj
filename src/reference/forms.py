@@ -7,7 +7,7 @@ class GenreModelForm(forms.ModelForm):
     class Meta: 
         model = models.Genre
         fields = [
-           "picture", "name", "description"]
+           "name", "description"]
 
 class AuthorModelForm(forms.ModelForm):
     class Meta: 

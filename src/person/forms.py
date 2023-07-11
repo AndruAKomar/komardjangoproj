@@ -13,10 +13,9 @@ class UserDetailForm(forms.ModelForm):
 # рассширяем модель ЮЗЕР доп полями ПЕРСОН. Создаем вторую форму
  
 class UserUpdateForm(forms.ModelForm):
-    order = forms.CharField(label='Orders', widget=forms.TextInput, max_length=50, required=False)
     class Meta:
         model = User
-        fields = ('username', 'first_name','last_name', 'email', "order")
+        fields = ('username', 'first_name','last_name', 'email')
 
 class PersonUpdateForm(forms.ModelForm):
     class Meta:

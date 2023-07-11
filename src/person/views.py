@@ -21,15 +21,6 @@ class LogoutView(auth_views.LogoutView):
     template_name = 'person/logout.html'
 
 
-
-
-#Update   
-# class UserUpdateView(generic.UpdateView):
-#     model= User
-#     form_class= forms.UserUpdateForm
-#     template_name = 'person/user_update.html'
-#     success_url = '/'
-
 #users List
 class UsersListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     login_url=reverse_lazy('person:login')
@@ -92,14 +83,6 @@ def update(request):
                       {'user_form': user_form,
                        'person_form': person_form})
     
-# def view_user_detail(request, user_pk):
-#     user = User.objects.get(pk=user_pk)
-#     form = UserDetailForm(instance=user)
-#     order_form = OrderDetailForm()
-#     return render(request, 'person/user_detail.html', {
-#         'form': form, 'order_form':order_form 
-#     })
-
 
 #Detail    
 class UserDetailView(generic.DetailView):

@@ -3,13 +3,6 @@
 {% block BODY %}
 
 
-{% comment %} {{object_list}}<br>
-{{order_list.5.cart.customer}}<br>
-{{order_list.all.catr.5}}<br>
-
-{{order_list}}<br>
-{{person_list}} {% endcomment %}
-
 <section class="py-5 text-center container">
     <div class="row py-lg-2">
       <div class="col-lg-6 col-md-8 mx-auto">
@@ -40,9 +33,6 @@
                 <th>delivery_adress</th>
                 <th>status</th>
                 <th>order</th>
-                <th>other</th>
-                
-                
                 
             </tr>
             {%for obj in object_list%}
@@ -79,17 +69,6 @@
                     {% if ord.cart.customer.username == obj.username %}<a href="{% url 'orders:order-update' pk=ord.pk %}" > {{ord}}</a> {%endif%}
                 {% endfor %}
                 </td>
-                {% comment %} <td>{{obj.ves}}</td>
-                <td>{{obj.agerestrict}}</td>
-                <td>{{obj.publish}}</td>
-                <td>{{obj.activ}}</td>
-                <td>{{obj.rating}}</td>
-                <td>{{obj.quantity}}</td>
-                <td>{{obj.price}}</td> {% endcomment %}
-                {% comment %} <td class="bg-success p-1 text-white">
-                    <a href="{% url 'books:BooksUpdateView' pk=obj.pk %}" ><i class="bi bi-wrench-adjustable"></i></a>
-                    <a href="{% url 'books:BooksDeleteView' pk=obj.pk %}" ><i class="bi bi-trash3-fill"></i></a>
-                </td> {% endcomment %}
             </tr>
             {% endfor %}
             

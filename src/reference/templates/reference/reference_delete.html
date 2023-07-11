@@ -2,10 +2,15 @@
 {% extends 'base.html' %}
 {% block TITLE %}Reference delete{% endblock TITLE %}
 {% block BODY %}
-    <H1>Delete: {{object}} ?</H1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Yes</button>
-    </form>
+<div class="container text-center" style="height: 90rex;">
+    <div>
+        <H1>Delete: {{object}} ?</H1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-success">Yes</button>
+            <a href='/reference/reference-list' class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+</div>
 {% endblock BODY %}

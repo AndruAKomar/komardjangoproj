@@ -34,9 +34,6 @@ class UserRegistrationForm(forms.ModelForm):
         fields = ('username', 'first_name','last_name', 'email')
 
     def clean_password2(self):
-        # self.User.create(telephone_number='123')
-        # User.email.create(self.cleaned_data[telephone_number.v='123'])
-        # print()
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')

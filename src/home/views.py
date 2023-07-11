@@ -10,12 +10,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpRequest
 from django.db.models import Q
 
-# Create your views here.
-
-#HomePage 
-# class HomePage(generic.TemplateView):
-#     template_name='home/index.html'
-#    
+# Create your views here.   
     
 # ListView
 class HomePage(generic.ListView):

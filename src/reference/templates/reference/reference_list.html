@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col">
         <h1>Genre</h1>
-        <table border="1" align="center">
+        <table class="table table-bordered">
             <tr>
                 <th>pk</th>
                 <th>name</th>
@@ -41,9 +41,10 @@
             </tr>
         </table>
       </div>
+
       <div class="col">
         <h1>Authors</h1>
-        <table border="1" align="center">
+        <table class="table table-bordered">
             <tr>
                 <th>pk</th>
                 <th>name</th>
@@ -67,9 +68,10 @@
             </tr>
         </table>
       </div>
+
       <div class="col">
         <h1>Series</h1>
-        <table border="1" align="center">
+        <table class="table table-bordered">
             <tr>
                 <th>pk</th>
                 <th>name</th>
@@ -93,9 +95,10 @@
             </tr>
         </table>
       </div>
+
       <div class="col">
         <h1>Publish</h1>
-        <table border="1" align="center">
+        <table class="table table-bordered">
             <tr>
                 <th>pk</th>
                 <th>name</th>
@@ -120,6 +123,36 @@
         </table>
       </div>
     </div>
+
+    <div class="row" style="top: auto; width: 25%;">
+        <div class="col">
+            <h1>Status</h1>
+        <table class="table table-bordered">
+            <tr> 
+                <th>pk</th>
+                <th>name</th>
+                <th>actions</th>
+            </tr>
+            {%for obj in status_list%}
+            <tr>
+                <td>{{obj.pk}}</td>
+                <td>{{obj.name}}</td>
+                <td>
+                    <a href="{% url 'reference:StatusView' pk=obj.pk %}"><i class="bi bi-info-square-fill"></i></a>
+                    <a href="{% url 'reference:StatusUpdateView' pk=obj.pk %}"><i class="bi bi-wrench-adjustable"></i></a>
+                    <a href="{% url 'reference:StatusDeleteView' pk=obj.pk %}"><i class="bi bi-trash3-fill"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" class="bg-success p-2 text-white">
+                    <b> Add new? <a href="{% url 'reference:PublishCreateView' %}"><i class="bi bi-plus-square"></i></a></b>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
   </div>
 
 

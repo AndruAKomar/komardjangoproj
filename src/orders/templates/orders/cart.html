@@ -24,9 +24,6 @@
                     <td>{{good_in_cart.good.name}}</td>
                     <td>
                         <div class="number">
-                        {% comment %} <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
-                        <input type="number" min="0" value="{{good_in_cart.quantity}}" readonly>
-                        <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button> {% endcomment %}
                         <button class="number-minus" type="button" onclick="deleteGood({{good_in_cart.good.pk}})">-</button>
                         <input type="number" min="0" value="{{good_in_cart.quantity}}" readonly>
                         <button class="number-plus" type="button" onclick="addGood({{good_in_cart.good.pk}})">+</button>

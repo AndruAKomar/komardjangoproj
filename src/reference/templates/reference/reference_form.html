@@ -3,12 +3,15 @@
 {% load crispy_forms_tags %}
 {% block TITLE %}Reference form add{% endblock TITLE %}
 {% block BODY %}
-    
+<div class="container text-left" style="width: 30%;">
+    <div>    
     <H1>Сreate a new reference entry</H1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form|crispy}} 
         <button type="send" class="btn btn-success">Send</button>
         <a href='/reference/reference-list' class="btn btn-danger">Cancel</a>
-    </form>   
+    </form>  
+    </div>
+</div> 
 {% endblock BODY %}

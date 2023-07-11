@@ -20,7 +20,16 @@
             {% csrf_token %}
             {{form|crispy}}
             {% comment %} {{form.as_p}} {% endcomment %}
-            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+            <button type="submit" class="btn btn-outline-secondary" {%if not user.is_staff %}{%  if not user.is_superuser %}
+            hidden
+            {% endif %}hidden
+            {% endif %}>Submit
+            </button>
+            <button type="submit" class="btn btn-outline-secondary" {%if user.is_staff %}{%  if user.is_superuser %}
+            hidden
+            {% endif %}hidden
+            {% endif %}>Change
+            </button>
         </form>
     </div>
 </div> 

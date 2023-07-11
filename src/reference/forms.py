@@ -26,3 +26,9 @@ class PublishModelForm(forms.ModelForm):
         model = models.Publish
         fields = [
            "name", "description"]
+        
+class StatusModelForm(forms.ModelForm):
+    class Meta: 
+        model = models.Publish
+        fields = [
+           "name", "description"]

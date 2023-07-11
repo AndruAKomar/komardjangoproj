@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.views import generic
 from . import models
 from . import forms
-from .models import Author, Genre, Series, Publish
+from .models import Author, Genre, Series, Publish, Status
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -49,6 +49,10 @@ class PublishView(generic.DetailView):
     model = models.Publish
     template_name = 'reference/reference_detail.html'   
 
+class StatusView(generic.DetailView):
+    model = models.Status
+    template_name = 'reference/reference_detail.html'   
+
 #List 
 class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     login_url=reverse_lazy('person:login')
@@ -60,6 +64,8 @@ class ReferenceListView(LoginRequiredMixin, PermissionRequiredMixin, generic.Lis
         cont["author_list"] = Author.objects.all()
         cont["series_list"] = Series.objects.all()
         cont["publish_list"] = Publish.objects.all()
+        cont["publish_list"] = Publish.objects.all()
+        cont["status_list"] = Status.objects.all()
         return cont
 
 
@@ -85,6 +91,7 @@ class AuthorCreateView(generic.CreateView):
     def get_success_url(self) -> str:
         return super().get_success_url()
 
+
 class SeriesCreateView(generic.CreateView):
     model = models.Series
     template_name = 'reference/reference_form.html'
@@ -94,6 +101,7 @@ class SeriesCreateView(generic.CreateView):
     success_url = '/reference/reference-list'
     def get_success_url(self) -> str:
         return super().get_success_url()
+    
 
 class PublishCreateView(generic.CreateView):
     model = models.Publish
@@ -105,18 +113,22 @@ class PublishCreateView(generic.CreateView):
     def get_success_url(self) -> str:
         return super().get_success_url()
 
+class StatusCreateView(generic.CreateView):
+    model = models.Status
+    template_name = 'reference/reference_form.html'
+    fields = [
+        "name"
+    ]
+    success_url = '/reference/reference-list'
+    def get_success_url(self) -> str:
+        return super().get_success_url()
+
 #Updata
 class GenreUpdateView(generic.UpdateView):
     model = models.Genre
     template_name = 'reference/reference_update.html'
     form_class= forms.GenreModelForm
     success_url = '/reference/reference-list' 
-    # def form_valid(self, form):
-    #     #     if 'picture' in form.changed_data:
-    #     self.object.picture_resizer()
-    #     return super().form_valid(form)
-    def get_success_url(self) -> str:
-        return super().get_success_url()
  
 class AuthorUpdateView(generic.UpdateView):
     model = models.Author
@@ -134,6 +146,12 @@ class PublishUpdateView(generic.UpdateView):
     model = models.Publish
     template_name = 'reference/reference_update.html'
     form_class= forms.PublishModelForm
+    success_url = '/reference/reference-list'  
+
+class StatusUpdateView(generic.UpdateView):
+    model = models.Status
+    template_name = 'reference/reference_update.html'
+    form_class= forms.StatusModelForm
     success_url = '/reference/reference-list'  
 
 #Delete
@@ -157,3 +175,7 @@ class PublishDeleteView(generic.DeleteView):
     template_name = 'reference/reference_delete.html' 
     success_url = '/reference/reference-list'
     
+class StatusDeleteView(generic.DeleteView):
+    model = models.Status
+    template_name = 'reference/reference_delete.html' 
+    success_url = '/reference/reference-list'

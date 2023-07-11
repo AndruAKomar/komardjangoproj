@@ -16,15 +16,17 @@
 <div class="container text-left" style="width: 30%;">
   <div>
     <H1>{{object}}</H1>
-    
+    <hr>
         <div class="container text-left" >
           <b>Cart: </b>{{object.cart}}<br>
+          <hr>
           <b>Goods in cart: </b>{%for good in object_cart%}
           {% if good.cart == object.cart %}
            {{good}} /
           {%endif%}
           {% endfor %}<br>
-          <b>Status: </b>{{object.status}}<br>
+          <b>Status: </b>{{object.status}} <br>
+          <i class="bi bi-lightbulb"></i> <a href="{% url 'orders:order-update' pk=object.pk %}">  Change status</a> ?<br>
           <b>Delivery adress: </b>{{object.delivery_adress}}<br>
           <b>created: </b>{{object.created}}<br>
           <b>updated: </b>{{object.updated}}<br>

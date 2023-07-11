@@ -1,5 +1,4 @@
 from typing import Any, Dict
-from django.shortcuts import render
 from django.views import generic
 from books import models
 from books.models import Book

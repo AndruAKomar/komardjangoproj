@@ -71,10 +71,9 @@ class GenreCreateView(generic.CreateView):
         "name", "description"
     ]
     success_url = '/reference/reference-list'
-
     def get_success_url(self) -> str:
-        # self.object.picture_resizer()
         return super().get_success_url()
+
 
 class AuthorCreateView(generic.CreateView):
     model = models.Author
@@ -83,7 +82,6 @@ class AuthorCreateView(generic.CreateView):
         "name", "description"
     ]
     success_url = '/reference/reference-list'
-
     def get_success_url(self) -> str:
         return super().get_success_url()
 
@@ -94,7 +92,6 @@ class SeriesCreateView(generic.CreateView):
         "name"
     ]
     success_url = '/reference/reference-list'
-    
     def get_success_url(self) -> str:
         return super().get_success_url()
 
@@ -105,7 +102,6 @@ class PublishCreateView(generic.CreateView):
         "name", "description"
     ]
     success_url = '/reference/reference-list'
-
     def get_success_url(self) -> str:
         return super().get_success_url()
 
@@ -116,12 +112,10 @@ class GenreUpdateView(generic.UpdateView):
     form_class= forms.GenreModelForm
     success_url = '/reference/reference-list' 
     # def form_valid(self, form):
-    #     # if form.has_changed():
     #     #     if 'picture' in form.changed_data:
     #     self.object.picture_resizer()
     #     return super().form_valid(form)
     def get_success_url(self) -> str:
-        # self.object.picture_resizer()
         return super().get_success_url()
  
 class AuthorUpdateView(generic.UpdateView):

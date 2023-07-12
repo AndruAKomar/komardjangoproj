@@ -156,9 +156,13 @@ class OrderUpdateView(UpdateView):
     model= Order
     form_class= forms.OrderModelForm
     template_name = "orders/order_update.html"
-    success_url= '/'
-    # success_url= '/person/user-list'
-    # установил саксес урл на главную страницу т.к. покупателю на юзерлист нельзя . Надо подумать как переопределить урл     
+    def get_success_url(self):
+        success_url=reverse_lazy("HomePage")
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            success_url=reverse_lazy("person:UsersListView")
+        return success_url
+
+ 
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         cont =super().get_context_data(**kwargs)
